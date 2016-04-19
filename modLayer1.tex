@@ -11,7 +11,7 @@
 \useoutertheme{miniframes}
 \beamertemplatenavigationsymbolsempty
 \makeindex
-\title[Layer1 Module]{Updates on Layer1 Module}
+\title[Layer1 Module Soft]{Software Upgrade for the CMS Layer1 Module}
 \author[M. Reichmann]{Michael Reichmann}
 \institute[\textbf{\textit{ETH}}\scalebox{.6}{\textit{Z\"{u}rich}}]{Swiss Federal Institute of Technology Zurich}
 \AtBeginSection{\frame{\sectionpage}}
@@ -26,7 +26,7 @@
 	\end{center}
 	\begin{alertblock}{
 		\begin{center}
-			\textbf{Updates on Layer1 Module \today}
+			\textbf{Software Upgrade for the CMS Layer1 Module}
 		\end{center}}
 		\vspace*{10pt}
 		\begin{center}\small
@@ -44,99 +44,185 @@
 \end{frame}
 % END
 % ====================================================================================
-% STOCK
+% BEGIN MOTIVATION
 % ====================================================================================
-\section{Stock}
+\section{Motivation}
 % ============================
 \begin{frame}
 	\begin{itemize}
-		\item two Layer1 Modules at PSI
+		\setlength{\itemsep}{\fill}
+		\item tracker has to handle larger amount of data
 		\begin{itemize}
-			\item one with TBM09 (Token Bit Manager)
+			\item $50$ instead of $25$ collisions per bunch crossing after the next upgrade
+		\end{itemize}
+		\item adding innermost layer to the CMS tracker with a new module design (highest data volume)
+		\begin{itemize}
+			\item equipped with new PROC600 as ROC $\rightarrow$ higher data processing speed
+		\end{itemize}
+		\item current modules currently work with one TBM which has two SDATA lines
+		\begin{itemize}
+			\item $8$ ROCs per line
+		\end{itemize}
+		\item improve readout speed by adding a second TBM
+	\end{itemize}
+\end{frame}
+% END MOTIVATION
+% ====================================================================================
+% BEGIN LAYOUT
+% ====================================================================================
+\section{Layout}
+% ============================
+\subsection{Schematics}
+\begin{frame}
+	\begin{center}
+		\includegraphics[width=\textwidth]{Schematics}
+	\end{center}
+\end{frame}
+% ============================
+\subsection{Digital Module Adapter}
+\begin{frame}
+	\begin{itemize}
+		\setlength{\itemsep}{\fill}
+		\item adapter from Molex of the module to the SCSI of the DTB
+		\item old module has a Molex connector for a $33$ pin cable
+		\item additional TBM requires additional lines
+		\begin{itemize}
+			\item two pairs of differential SDATA lines
+			\item one pair of RDA lines (for TBM feedback)
+			\item pin for shielding
+			\item one VD+ less
+		\end{itemize}
+		\item Molex connector of the Layer1 module has $39$ pins
+		\item new adapter design by Martin Lickteig
+	\end{itemize}
+	\begin{minipage}{5.5cm}
+		\centering
+		\includegraphics[width=5cm]{digAdapter}
+	\end{minipage}
+	\hspace*{2pt}
+	\begin{minipage}{5.5cm}
+		\centering
+		\includegraphics[width=5cm]{digAdapter3D}
+	\end{minipage}
+\end{frame}
+% new frame ===================
+\begin{frame}
+	\begin{center}
+		\includegraphics[width=0.95\textwidth]{connector}
+	\end{center}
+\end{frame}
+% END LAYOUT
+% ====================================================================================
+% BEGIN TEST MODULES
+% ====================================================================================
+\section{Modules for Testing}
+% ============================
+\begin{frame}
+	\underline{\textbf{Currently available:}}
+	\begin{itemize}
+		\setlength{\itemsep}{\fill}
+		\item PSI produced two layer1-like modules based on bare dig2.1respin modules:
+		\begin{itemize}
+			\item one with TBM09 (current Token Bit Manager)
 			\item one with the new TBM10 $\rightarrow$ electrical shortcut
-		\end{itemize}
-		\item both TMBs meant to be used as pair (afaik)
-	\end{itemize}
-	\begin{center}
-		\includegraphics[width=8cm]{bothMod}
-	\end{center}
-\end{frame}
-% ====================================================================================
-% CONFIG
-% ====================================================================================
-\section{Configuration Files}
-% ============================
-\begin{frame}
-	\underline{\textbf{configParameters.dat}}
-	\begin{itemize}
-		\setlength{\itemsep}{\fill}
-		\item hubID: wire bonded address of the TBM
-		\item changing hubID from value to vector$<$value$>$
-		\item adding function to read in multiple hubIDs
-		\item default setting is {31} (vector with one entry) ( 31 = default address of the old modules)
-		\item adding function to turn a vector into a string
-		\item fixing writeConfigParameterFile(): multiple hubIDs correctly written back to file
-	\end{itemize}
-	\vspace*{.7cm}
-	\underline{\textbf{tbmParameters*.dat}}
-	\begin{itemize}
-		\setlength{\itemsep}{\fill}
-		\item TBM timing config files were incorrectly saved
-		\item fixing the save files names 
-	\end{itemize}
-\end{frame}
-% ====================================================================================
-% 4th APRIL
-% ====================================================================================
-\section{4th April}
-% ============================
-\begin{frame}
-	\begin{itemize}
-		\setlength{\itemsep}{\fill}
-		\item some code style improvements
-		\item Wolfram improving speed of timing test by assigning less buffer size
-		\item module heating problem
-		\item checking timings
-		\item weird pixel maps and tornado plots $\rightarrow$ add plots
-		\item no history of the modules and sensors...
-	\end{itemize}
-\end{frame}
-% ============================
-\subsection{Heating-Up of the Modules}
-\begin{frame}
-	\begin{itemize}
-		\setlength{\itemsep}{\fill}
-		\item TBM10 module was still in black transportation box
-		\item module heats up significantly while pXar is running 
 			\begin{itemize}
-				\item box was hot by touch
+				\item sensors cannot be biased
 			\end{itemize}
-		\item DACs and timing T-dependent
-		\item moving module from the box onto a aluminum block as heat spreader
-		\item module slightly bent while removing from the box
-		\item Tilman and Wolfram could not find any history of the modules
-		\item module still working, bump bonds map did not look too bad $\rightarrow$ add pic
-		
+		\end{itemize}
 	\end{itemize}
-	\begin{center}
-		\includegraphics[width=6cm]{Module}
-	\end{center}
-\end{frame}
-% ============================
-\subsection{Pretest / Timing}
-\begin{frame}
+	\vspace*{1cm}
+	\underline{\textbf{TMB10:}}
 	\begin{itemize}
 		\setlength{\itemsep}{\fill}
-		\item pretest not fully working
+		\item TBM10 has additional delay of three clock cycles between trigger and token
 		\begin{itemize}
-			\item some pixel maps missing circular shapes
-			\item tornado plots twisted and cut apart
-			\item no timing test used for TBM09 and TMB10
+			\item required by PROC600
 		\end{itemize}
-		\item need to debug Wolframs timing test for the new module
-		\item started to dig into the code
+	\end{itemize}
+	\vspace*{1cm}
+	\underline{\textbf{Plan on further modules:}}
+	\begin{itemize}
+		\item fully working module with TBM10 and digv2.1respin (no shortcut)
+		\item module with PROC600 as soon as new chip iteration is produced
 	\end{itemize}
 \end{frame}
+% new frame ===================
+\begin{frame}
+	\begin{center}
+		\includegraphics[height=0.85\textheight]{bothMod}
+	\end{center}
+\end{frame}
+% END TEST MODULES
+% ====================================================================================
+% ====================================================================================
+% BEGIN DTB 
+% ====================================================================================
+\section{Changes of the DTB}
+% ============================
+\subsection{Software}
+\begin{frame}
+	\frametitle{C\texttt{++} code accessed by pXar on a virtual processor on the FPGA}
+	\underline{\textbf{Issues:}}
+	\begin{itemize}
+		\setlength{\itemsep}{\fill}
+		\item ROC I$^{2}$C addresses remain the same
+		\item HubIDs (hard wired address of the TBM) and PortAddresses change
+	\end{itemize}
+	\vspace*{10pt}
+	\underline{\textbf{Software Additions:}}
+	\begin{itemize}
+		\setlength{\itemsep}{\fill}
+		\item \ubu{bool layer1}: adding boolean as identifier for the layer1 module
+		\item \ubu{void roc\_I2cAddr\_Layer\_1(uint8\_t id)}: sets the correct HubAddress for layer1
+		\item \ubu{const unsigned char CTestboard::MODCONF L1[16]}: stores the port addresses
+		\item \ubu{void mod\_Addr(uint8\_t hub0, uint8\_t hub1)}: accessible in pXar, sets the HubIDs
+	\end{itemize}
+\end{frame}
+% ============================
+\subsection{Firmware}
+\begin{frame}
+	\frametitle{Verilog FPGA design}
+	\underline{\textbf{Issue:}}
+	\begin{itemize}
+		\item only $3$ Deserializer400 implemented
+		\begin{itemize}
+			\item due to former compiling issues
+		\end{itemize}
+	\end{itemize}
+	\vspace*{10pt}
+	\underline{\textbf{Changes:}}
+	\begin{itemize}
+		\item reactivation of the 4th Deserializer400 to handle the 4 data streams
+	\end{itemize}
+\end{frame}
+% END DTB
+% ====================================================================================
+% BEGIN PXAR 
+% ====================================================================================
+\section{Changes in PXAR}
+% ============================
+\subsection{Additional TBM}
+\begin{frame}
+	\begin{itemize}
+		\item \ubu{tbmConfig} in pXar almost built up correctly by module parameters in configuration file
+		\begin{itemize}
+			\item \ubu{nModules, nRocs, nTBMs}
+			\item rename \ubu{tbmConfig} to \ubu{tbmCoreConfig}
+		\end{itemize}
+	\end{itemize}
+	\vspace*{10pt}
+	\underline{\textbf{Issue:}}
+	\begin{itemize}
+		\item cannot handle more than one HubID 
+	\end{itemize}
+	\vspace*{10pt}
+	\underline{\textbf{Solution:}}
+	\begin{itemize}
+		\item changing \ubu{usigned int fHubId} to \ubu{vector<uint8\_t> fHubIds}
+	\end{itemize}
+
+\end{frame}
+% END PXAR
 % DOCUMENT END
 \end{document}
 

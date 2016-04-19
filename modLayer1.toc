@@ -1,0 +1,12 @@
+\beamer@endinputifotherversion {3.24pt}
+\select@language {british}
+\beamer@sectionintoc {1}{Motivation}{3}{0}{1}
+\beamer@sectionintoc {2}{Layout}{5}{0}{2}
+\beamer@subsectionintoc {2}{1}{Schematics}{6}{0}{2}
+\beamer@subsectionintoc {2}{2}{Digital Module Adapter}{7}{0}{2}
+\beamer@sectionintoc {3}{Modules for Testing}{9}{0}{3}
+\beamer@sectionintoc {4}{Changes of the DTB}{12}{0}{4}
+\beamer@subsectionintoc {4}{1}{Software}{13}{0}{4}
+\beamer@subsectionintoc {4}{2}{Firmware}{14}{0}{4}
+\beamer@sectionintoc {5}{Changes in PXAR}{15}{0}{5}
+\beamer@subsectionintoc {5}{1}{Additional TBM}{16}{0}{5}

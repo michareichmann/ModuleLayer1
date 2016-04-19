@@ -204,7 +204,7 @@
 \subsection{Additional TBM}
 \begin{frame}
 	\begin{itemize}
-		\item \ubu{tbmConfig} in pXar almost built up correctly by module parameters in configuration file
+		\item \ubu{tbmConfig} in pXar almost built up correctly by module parameters in \ubu{configParameters.dat} file
 		\begin{itemize}
 			\item \ubu{nModules, nRocs, nTBMs}
 			\item rename \ubu{tbmConfig} to \ubu{tbmCoreConfig}
@@ -218,7 +218,17 @@
 	\vspace*{10pt}
 	\underline{\textbf{Solution:}}
 	\begin{itemize}
+		\setlength{\itemsep}{\fill}
 		\item changing \ubu{usigned int fHubId} to \ubu{vector<uint8\_t> fHubIds}
+		\begin{itemize}
+			\item including adaption of: \ubu{readHubIds()}, \ubu{writeConfigParameterFile()}
+		\end{itemize}
+		\item appending HubID with a comma to \ubu{hubId} option in config file
+		\item overloading \ubu{initDUT()} method to be backwards compatible with old modules
+		\begin{itemize}
+			\item if called with hubID vector of size 2: calls new DTB software function \ubu{mod\_Addr}
+		\end{itemize}
+		\item fixing method \ubu{writeTbmParameterFile()} which would write the settings to incorrect filenames 1+ TBMs
 	\end{itemize}
 
 \end{frame}
